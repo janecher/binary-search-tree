@@ -4,6 +4,8 @@ import BSTNode from '../src/bst-node.js';
 describe('binarySearchTree', () => {
 
   const pbst = new BST();
+  const bstRemove = new BST();
+  const bstOnlyRootRemove = new BST();
 
   beforeEach(() => {
     pbst.insert(new BSTNode(4));
@@ -12,7 +14,13 @@ describe('binarySearchTree', () => {
     pbst.insert(new BSTNode(1));
     pbst.insert(new BSTNode(3));
     pbst.insert(new BSTNode(5));
-    pbst.insert(new BSTNode(7));  
+    pbst.insert(new BSTNode(7)); 
+    bstOnlyRootRemove.insert(new BSTNode(4)); 
+    bstRemove.insert(new BSTNode(4));
+    bstRemove.insert(new BSTNode(2));
+    bstRemove.insert(new BSTNode(6));
+    bstRemove.insert(new BSTNode(1));
+    bstRemove.insert(new BSTNode(7));
   });
 
   test('should initialize a binary search tree with a root of null', () => {
@@ -104,5 +112,35 @@ describe('binarySearchTree', () => {
 
   test('it should return true if the tree includes 7', () => {
     expect(pbst.search(7)).toEqual(true);
+  });
+
+  test('it should return false if the removedNode not exist in the tree', () => {
+    let removedNode = new BSTNode(31);
+    expect(pbst.remove(removedNode)).toEqual(false);
+  });
+
+  test('it should return true if the removedNode is the root of the tree and tree has only root', () => {
+    let removedNode = new BSTNode(4);
+    expect(bstOnlyRootRemove.remove(removedNode)).toEqual(true);
+  });
+
+  test('it should return true if the removedNode doesnt have a children', () => {
+    let removedNode = new BSTNode(1);
+    expect(bstRemove.remove(removedNode)).toEqual(true);
+  });
+
+  test('it should return true if the removedNode have only right child', () => {
+    let removedNode = new BSTNode(6);
+    expect(bstRemove.remove(removedNode)).toEqual(true);
+  });
+
+  test('it should return true if the removedNode have only left child', () => {
+    let removedNode = new BSTNode(2);
+    expect(bstRemove.remove(removedNode)).toEqual(true);
+  });
+
+  test('it should return true if the removedNode have both children', () => {
+    let removedNode = new BSTNode(4);
+    expect(bstRemove.remove(removedNode)).toEqual(true);
   });
 });
