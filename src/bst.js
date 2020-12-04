@@ -29,4 +29,22 @@ export default class BST {
       }
     }
   }
+
+  search(value) {
+    if (this.root === null) {
+      return false;
+    } else {
+      let currentNode = this.root;
+      while (currentNode != null) {
+        if(currentNode.data === value) {
+          return true;
+        } else if (currentNode.data > value) {
+            currentNode = currentNode.left;
+        } else {
+          currentNode = currentNode.right;
+        }
+      }
+      return false;
+    }
+  }
 }
