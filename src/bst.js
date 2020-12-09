@@ -1,6 +1,8 @@
 export default class BST {
   constructor() {
     this.root = null;
+    this.leftHeight = 0;
+    this.rightHeight = 0;
   }
 
   insert(insertedNode) {
@@ -12,6 +14,7 @@ export default class BST {
         if (currentNode.data > insertedNode.data) {
           if (currentNode.left === null) {
             currentNode.left = insertedNode;
+            this.leftHeight++;
             return this;
           } else {
             currentNode = currentNode.left;
@@ -19,6 +22,7 @@ export default class BST {
         } else if (currentNode.data < insertedNode.data) {
           if (currentNode.right === null) {
             currentNode.right = insertedNode;
+            this.rightHeight++;
             return this;
           } else {
             currentNode = currentNode.right;
@@ -73,4 +77,5 @@ export default class BST {
       }
     }
   }
+
 }
