@@ -91,7 +91,10 @@ describe('binarySearchTree', () => {
     let rootNode = new BSTNode(36);
     bst.insert(rootNode);
     let node2 = new BSTNode(36);
-    expect(bst.insert(node2)).toEqual({"root": {"data": 36, "left": null, "right": null}});
+    bst.insert(node2);
+    expect(rootNode.data).toEqual(36);
+    expect(rootNode.left).toEqual(null);
+    expect(rootNode.right).toEqual(null);
   });
 
   test('it should return true if the root node is equal to 4', () => {
