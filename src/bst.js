@@ -78,4 +78,39 @@ export default class BST {
     }
   }
 
+  //collect bst node's value in ascending order - depthFirstSearch
+  inorderTraverse() {
+    let data = [];
+    function traverse(node) {
+      if(node.left != null) {
+        traverse(node.left);
+      }
+      data.push(node.data);
+      if(node.left != null) {
+        traverse(node.left);
+      }
+    }
+    traverse(this.root);
+    return data;
+  }
+
+  //preOrder - for duplicating the tree
+  //breacthFirst - to collect by levels
+  breadthFirst() {
+    let data = [];
+    let queue = [];
+    let current = this.root;
+    queue.push(current);
+    while(queue.length != 0) {
+      current = queue.shift();
+      data.push(current);
+      if(current.left) {
+        queue.push(current.left);
+      }
+      if(current.right) {
+        queue.push(current.right);
+      }
+    }
+    return data;
+  }
 }
